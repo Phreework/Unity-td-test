@@ -100,11 +100,30 @@ public class GameManager : MonoBehaviour {
         GameObject go = data.selectedObject;
         //not yet
     }
+    private void Update() {
+        if (m_isSelectedSoldierButton) return;
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+        bool press = Input.touches.Length > 0 ? true :false;
+        float mx = 0;
+        float my = 0;
+        if(press) {
+            if (Input.GetTouch(0).phase == TouchPhase.Moved) {
+                mx = Input.GetTouch(0).deltaPosition.x * 0.01f;
+                my = Input.GetTouch(0).deltaPosition.y * 0.01f;
+            }
+        }
+#else 
+        bool press = Input.GetMouseButton(0);
+        float mx = Input.GetAxis("Mouse X");
+        float my = Input.GetAxis("Mouse Y");
+#endif
+        GameCamera.Inst.Control(press, mx, my);
+    }
 
 
-    #region Extra Method
+#region Extra Method
 
 
-    #endregion
+#endregion
 
 }
