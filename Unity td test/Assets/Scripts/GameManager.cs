@@ -42,8 +42,10 @@ public class GameManager : MonoBehaviour {
         up.eventID = EventTriggerType.PointerUp;
         up.callback.AddListener(upAction);
 
-        GameObject uicanvas = GameObject.Find("Canvas");
-        Transform[] UIchildren = GetAllUICom(uicanvas);
+
+        //Transform[] UIchildren = this.GetComponentsInChildren<Transform>();             remember this emmmmm
+        //Transform[] UIchildren2 = this.GetComponentInChildren<Transform>();
+        Transform[] UIchildren = this.GetComponentsInChildren<Transform>();
         foreach (Transform t in UIchildren) {
             if (t.name.CompareTo("wave") == 0) {
                 m_txt_wave = t.GetComponent<Text>();
@@ -54,18 +56,23 @@ public class GameManager : MonoBehaviour {
             } else if (t.name.CompareTo("point") == 0) {
                 m_txt_point = t.GetComponent<Text>();
                 m_txt_point.text = string.Format("铜钱：<color=yellow>{0}</color>", m_point);
-            }//////////////////////////////////////////
+            } else if (t.name.CompareTo("but_try") == 0) {
+                m_but_try = t.GetComponent<Button>();
+                m_but_try.onClick.AddListener(delegate () {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                });
+                m_but_try.gameObject.SetActive(false);
+            }else if (t.name.Contains("but_player")) {
+                //add soldier event
+                EventTrigger trigger = t.gameObject.AddComponent<EventTrigger>();
+                trigger.triggers = new List<EventTrigger.Entry>();
+                trigger.triggers.Add(down);
+                trigger.triggers.Add(up);
+            }
         }
     }
 
 
-
-
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
     public void SetWave(int wave) {
         m_wave = wave;
         m_txt_wave.text = string.Format("波数：<color=yellow>{0}/{1}</color>", m_wave, m_waveMax);
@@ -96,9 +103,8 @@ public class GameManager : MonoBehaviour {
 
 
     #region Extra Method
-    private static Transform[] GetAllUICom(GameObject uicanvas) {
-        return uicanvas.GetComponentsInChildren<Transform>();
-    }
+
+
     #endregion
 
 }
