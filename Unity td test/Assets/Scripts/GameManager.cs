@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour {
     //flag select button
     bool m_isSelectedSoldierButton = false;
 
+    //pathNode line switch
+    public bool m_debug = true;
+    //pathnode
+    public List<PathNode> m_PathNodes;
+
     private void Awake() {
         Instance = this;
     }
@@ -73,33 +78,10 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    public void SetWave(int wave) {
-        m_wave = wave;
-        m_txt_wave.text = string.Format("波数：<color=yellow>{0}/{1}</color>", m_wave, m_waveMax);
-    }
-    public void SetDamage(int damage) {
-        m_life -= damage;
-        if(m_life <= 0) {
-            m_life = 0;
-            m_but_try.gameObject.SetActive(true);
-        }
-        m_txt_life.text = string.Format("生命：<color=yellow>{0}</color>",m_life);
-    }
-    public bool SetPoint(int point) {
-        if (m_point + point < 0) {
-            return false;
-        }
-        m_point += point;
-        m_txt_point.text = string.Format("铜钱：<color=yellow>{0}</color>",m_point);
-        return true;
-    }
-    void OnButCreateDefenderDown(BaseEventData data) {
-        m_isSelectedSoldierButton = true;
-    }
-    void OnButCreateDefenderUp(BaseEventData data) {
-        GameObject go = data.selectedObject;
-        //not yet
-    }
+
+
+
+
     private void Update() {
         if (m_isSelectedSoldierButton) return;
 #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
@@ -120,10 +102,66 @@ public class GameManager : MonoBehaviour {
         GameCamera.Inst.Control(press, mx, my);
     }
 
+    private void OnDrawGizmos() {
+        if (!m_debug || m_PathNodes == null) return;
+        Gizmos.color = Color.yellow;
+        DrawAdvanceLine();
+    }
 
-#region Extra Method
 
 
-#endregion
+    public void SetWave(int wave) {
+        m_wave = wave;
+        m_txt_wave.text = string.Format("波数：<color=yellow>{0}/{1}</color>", m_wave, m_waveMax);
+    }
+    public void SetDamage(int damage) {
+        m_life -= damage;
+        if (m_life <= 0) {
+            m_life = 0;
+            m_but_try.gameObject.SetActive(true);
+        }
+        m_txt_life.text = string.Format("生命：<color=yellow>{0}</color>", m_life);
+    }
+    public bool SetPoint(int point) {
+        if (m_point + point < 0) {
+            return false;
+        }
+        m_point += point;
+        m_txt_point.text = string.Format("铜钱：<color=yellow>{0}</color>", m_point);
+        return true;
+    }
+
+
+
+    void OnButCreateDefenderDown(BaseEventData data) {
+        m_isSelectedSoldierButton = true;
+    }
+    void OnButCreateDefenderUp(BaseEventData data) {
+        GameObject go = data.selectedObject;
+        //not yet
+    }
+
+
+
+    [ContextMenu("BuildPath")]
+    void BuildPath() {
+        m_PathNodes = new List<PathNode>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("pathnode");
+        for(int i = 0;i < objs.Length; i++) {
+            m_PathNodes.Add(objs[i].GetComponent<PathNode>());
+        }
+    }
+
+
+    #region Extra Method
+    private void DrawAdvanceLine() {
+        foreach (PathNode node in m_PathNodes) {
+            if (node.m_next != null) {
+                Gizmos.DrawLine(node.transform.position, node.m_next.transform.position);
+            }
+        }
+    }
+
+    #endregion
 
 }
