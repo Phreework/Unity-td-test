@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 95067530180880294}
   - component: {fileID: 114157434870137216}
   m_Layer: 0
-  m_Name: boar@skin
+  m_Name: boar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -853,7 +853,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1759897090493160}
-  m_LocalRotation: {x: -0.09259336, y: 0.6135029, z: 0.7133851, w: 0.32576424}
+  m_LocalRotation: {x: -0.092593364, y: 0.613503, z: 0.71338516, w: 0.32576427}
   m_LocalPosition: {x: -2.1024055, y: -11.208767, z: 11.322213}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_Children: []
