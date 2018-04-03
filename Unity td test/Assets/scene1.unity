@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6583,6 +6583,84 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+--- !u!1001 &1028507279
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.6429846
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.74425584
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.1806418
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.0047482164
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0054d8ebb39847d4d8874d5d7a98da8a, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &1043382232
 GameObject:
   m_ObjectHideFlags: 0
@@ -10069,6 +10147,25 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+--- !u!1 &1760317393 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100116, guid: 93cb65f40c8c1b847bbc3feff4d983c1, type: 3}
+  m_PrefabInternal: {fileID: 1028507279}
+--- !u!114 &1760317394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760317393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e160fda00d05f614db4aaa01fbf8dd86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_currentNode: {fileID: 1187830706}
+  m_life: 15
+  m_maxlife: 15
+  m_speed: 1
 --- !u!1 &1773220654
 GameObject:
   m_ObjectHideFlags: 0
