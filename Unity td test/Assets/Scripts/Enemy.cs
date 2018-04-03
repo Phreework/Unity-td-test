@@ -11,8 +11,11 @@ public class Enemy : MonoBehaviour {
     public float m_speed = 1;
     public System.Action<Enemy> onDeath;
 
+    private void Start() {
+        GameManager.Instance.m_EnemyList.Add(this);
+    }
 
-	void Update () {
+    void Update () {
         RotateTo();
         MoveTo();
 	}
@@ -42,6 +45,17 @@ public class Enemy : MonoBehaviour {
     }
 
     public void DestroyMe() {
+        GameManager.Instance.m_EnemyList.Remove(this);
+        onDeath(this);
         Destroy(this.gameObject);
+    }
+
+    public void setDamage(int damage) {
+        m_life -= damage;
+        if(m_life <= 0) {
+            m_life = 0;
+            GameManager.Instance.SetPoint(5);
+            DestroyMe();
+        }
     }
 }

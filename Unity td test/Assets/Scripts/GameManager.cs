@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
     public bool m_debug = true;
     //pathnode
     public List<PathNode> m_PathNodes;
+    // save all enemy
+    public List<Enemy> m_EnemyList = new List<Enemy>();
 
     private void Awake() {
         Instance = this;
