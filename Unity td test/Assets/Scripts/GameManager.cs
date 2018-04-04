@@ -10,6 +10,7 @@ using System;
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
+    public LayerMask m_groundlayer;
     public int m_wave = 1;
     public int m_waveMax = 10;
     public int m_life = 10;
@@ -140,7 +141,21 @@ public class GameManager : MonoBehaviour {
     }
     void OnButCreateDefenderUp(BaseEventData data) {
         GameObject go = data.selectedObject;
-        //not yet
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitinfo;
+        if (IsHitGround(ray,out hitinfo)) {
+            if (IsTileUseAble(hitinfo)) {
+                Vector3 hitpos = new Vector3(hitinfo.point.x, 0, hitinfo.point.z);
+                Vector3 gridpos = TileObject.Instance.transform.position;
+                float tilesize = TileObject.Instance.tileSize;
+
+                hitpos.x = gridpos.x + (int)((hitpos.x - gridpos.x) / tilesize) * tilesize + tilesize * 0.5f;
+                hitpos.z = gridpos.z + (int)((hitpos.z - gridpos.z) / tilesize) * tilesize + tilesize * 0.5f;
+
+                //not yet
+            }
+        }
+
     }
 
 
@@ -164,6 +179,12 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private bool IsHitGround(Ray ray,out RaycastHit hitinfo) {
+        return Physics.Raycast(ray,out hitinfo,1000,m_groundlayer);
+    }
+    private static bool IsTileUseAble(RaycastHit hitinfo) {
+        return TileObject.Instance.getDataFromPosition(hitinfo.point.x, hitinfo.point.z) == (int)Defender.TileStatus.GUARD;
+    }
     #endregion
 
 }

@@ -88,21 +88,34 @@ public class Defender : MonoBehaviour {
         }
     }
 
-    protected virtual IEnumerator Attack() {
-        while (m_targetEnemy == null || !m_isFaceEnemy)
-            yield return 0;
-        m_ani.CrossFade("attack", 0.1f);
+    protected IEnumerator Attack() {
+        while (NotReadyAttack()) yield return 0;
+        m_ani.CrossFade("attack", 0.1f);    //has fades effect
 
-        while (!m_ani.GetCurrentAnimatorStateInfo(0).IsName("attack"))
-            yield return 0;
+        while (!m_ani.GetCurrentAnimatorStateInfo(0).IsName("attack")) yield return 0;  //wait into attack ani
+
         float ani_lengh = m_ani.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(ani_lengh * 0.5f);
-        if (m_targetEnemy != null)
-            m_targetEnemy.setDamage(m_power);
+        if (m_targetEnemy != null) {
+            CauseDamage();
+        }
         yield return new WaitForSeconds(ani_lengh * 0.5f);
         m_ani.CrossFade("idle", 0.1f);
         yield return new WaitForSeconds(m_attackInterval);
 
         StartCoroutine(Attack());   //next attack
     }
+
+
+
+
+    #region Extra Method
+    protected virtual void CauseDamage() {
+        m_targetEnemy.setDamage(m_power);
+    }
+
+    private bool NotReadyAttack() {
+        return m_targetEnemy == null || !m_isFaceEnemy;
+    }
+    #endregion
 }
