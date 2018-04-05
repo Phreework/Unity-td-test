@@ -11,9 +11,21 @@ public class Enemy : MonoBehaviour {
     public float m_speed = 1;
     public System.Action<Enemy> onDeath;
 
+    protected Transform m_lifebarObj;
+    UnityEngine.UI.Slider m_lifebar;
+
     private void Start() {
         GameManager.Instance.m_EnemyList.Add(this);
+
+        //load lifebar prefab
+        GameObject prefab = (GameObject)Resources.Load("Canvas3D");
+        m_lifebarObj = ((GameObject)Instantiate(prefab, Vector3.zero, Camera.main.transform.rotation, this.transform)).transform;
+        SetBarLocalPosAndScale();
+        m_lifebar = m_lifebarObj.GetComponentInChildren<UnityEngine.UI.Slider>();
+        StartCoroutine(UpdateLifebar());
+
     }
+
 
     void Update () {
         RotateTo();
@@ -57,5 +69,19 @@ public class Enemy : MonoBehaviour {
             GameManager.Instance.SetPoint(5);
             DestroyMe();
         }
+    }
+
+    IEnumerator UpdateLifebar() {
+        //renew life value
+        m_lifebar.value = (float)m_life / (float)m_maxlife;
+        //face camera
+        m_lifebarObj.transform.eulerAngles = Camera.main.transform.eulerAngles;
+        yield return 0; //no waiting
+        StartCoroutine(UpdateLifebar());
+    }
+
+    protected virtual void SetBarLocalPosAndScale() {
+        m_lifebarObj.localPosition = new Vector3(0, 150f, 40f);
+        m_lifebarObj.localScale = new Vector3(2f, 2f, 2f);
     }
 }

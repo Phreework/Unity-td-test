@@ -10575,24 +10575,35 @@ MonoBehaviour:
     - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
     - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
     - {fileID: 1078252762479624, guid: 2c7cce7e219d6d94a8d6f6b76f054d75, type: 2}
-    level: 2
+    level: 1
     interval: 3
-  - wave: 0
-    enemyPrefab: []
-    level: 0
-    interval: 0
-  - wave: 0
-    enemyPrefab: []
-    level: 0
-    interval: 0
-  - wave: 0
-    enemyPrefab: []
-    level: 0
-    interval: 0
-  - wave: 0
-    enemyPrefab: []
-    level: 0
-    interval: 0
+  - wave: 3
+    enemyPrefab:
+    - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
+    - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
+    level: 2
+    interval: 2
+  - wave: 4
+    enemyPrefab:
+    - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
+    - {fileID: 1078252762479624, guid: 2c7cce7e219d6d94a8d6f6b76f054d75, type: 2}
+    - {fileID: 1078252762479624, guid: 2c7cce7e219d6d94a8d6f6b76f054d75, type: 2}
+    - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
+    - {fileID: 1078252762479624, guid: 2c7cce7e219d6d94a8d6f6b76f054d75, type: 2}
+    level: 2
+    interval: 4
+  - wave: 5
+    enemyPrefab:
+    - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
+    level: 5
+    interval: 2
+  - wave: 5
+    enemyPrefab:
+    - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
+    - {fileID: 1078252762479624, guid: 2c7cce7e219d6d94a8d6f6b76f054d75, type: 2}
+    - {fileID: 1825395553115922, guid: 4dda50f94eca63145be67fd17fde636a, type: 2}
+    level: 3
+    interval: 3
   - wave: 0
     enemyPrefab: []
     level: 0
