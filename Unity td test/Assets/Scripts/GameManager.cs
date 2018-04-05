@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour {
         m_isSelectedSoldierButton = true;
     }
     void OnButCreateDefenderUp(BaseEventData data) {
-        GameObject go = data.selectedObject;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitinfo;
         if (IsHitGround(ray,out hitinfo)) {
@@ -152,9 +152,17 @@ public class GameManager : MonoBehaviour {
                 hitpos.x = gridpos.x + (int)((hitpos.x - gridpos.x) / tilesize) * tilesize + tilesize * 0.5f;
                 hitpos.z = gridpos.z + (int)((hitpos.z - gridpos.z) / tilesize) * tilesize + tilesize * 0.5f;
 
-                //not yet
+                GameObject go = data.selectedObject;
+                if (go.name.Contains("1")) {
+                    if (SetPoint(-15)) 
+                        Defender.Create<Defender>(hitpos, new Vector3(0, 180, 0));
+                } else if (go.name.Contains("2")) {
+                    if (SetPoint(-20))
+                        Defender.Create<Archer>(hitpos, new Vector3(0, 180, 0));
+                }
             }
         }
+        m_isSelectedSoldierButton = false;
 
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameCamera : MonoBehaviour {
 
     public static GameCamera Inst = null;
-    protected float m_distance = 15;
+    protected float m_distance = 7;
     protected Vector3 m_rot = new Vector3(-55, 180, 0);
     protected float m_moveSpeed = 60;
 
