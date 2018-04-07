@@ -69,7 +69,21 @@ public class Defender : MonoBehaviour {
 
     //find target enemy
     void FindEnemy() {
-        if (m_targetEnemy != null) return;
+        #region attack bug
+        //if (m_targetEnemy != null) return;
+        #endregion
+        if (m_targetEnemy != null) {
+            Vector3 pos1 = this.transform.position;
+            pos1.y = 0;
+            Vector3 pos2 = m_targetEnemy.transform.position;
+            pos2.y = 0;
+            //dis to enemy
+            float dist = Vector3.Distance(pos1, pos2);
+            if (dist > m_attackArea)
+                m_targetEnemy = null;
+            else
+                return;
+        }
         m_targetEnemy = null;
         int minlife = 0;
         foreach(Enemy enemy in GameManager.Instance.m_EnemyList) {

@@ -10,6 +10,7 @@ using System;
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
+    public static DebugTool DebugTool;
     public LayerMask m_groundlayer;
     public int m_wave = 1;
     public int m_waveMax = 10;
@@ -87,21 +88,40 @@ public class GameManager : MonoBehaviour {
 
     private void Update() {
         if (m_isSelectedSoldierButton) return;
-#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
-        bool press = Input.touches.Length > 0 ? true :false;
-        float mx = 0;
-        float my = 0;
-        if(press) {
-            if (Input.GetTouch(0).phase == TouchPhase.Moved) {
-                mx = Input.GetTouch(0).deltaPosition.x * 0.01f;
-                my = Input.GetTouch(0).deltaPosition.y * 0.01f;
+        #region bad smell
+        //#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+        //        bool press = Input.touches.Length > 0 ? true :false;
+        //        float mx = 0;
+        //        float my = 0;
+        //        if(press) {
+        //            if (Input.GetTouch(0).phase == TouchPhase.Moved) {
+        //                mx = Input.GetTouch(0).deltaPosition.x * 0.01f;
+        //                my = Input.GetTouch(0).deltaPosition.y * 0.01f;
+        //            }
+        //        }
+        //#else 
+        //        bool press = Input.GetMouseButton(0);
+        //        float mx = Input.GetAxis("Mouse X");
+        //        float my = Input.GetAxis("Mouse Y");
+        //#endif
+        #endregion
+        bool press;
+        float mx, my;
+        if ((DebugTool.IsiOS || DebugTool.IsAndroid) && !DebugTool.IsEditor) {
+            press = Input.touches.Length > 0 ? true : false;
+            mx = 0;
+            my = 0;
+            if (press) {
+                if (Input.GetTouch(0).phase == TouchPhase.Moved) {
+                    mx = Input.GetTouch(0).deltaPosition.x * 0.01f;
+                    my = Input.GetTouch(0).deltaPosition.y * 0.01f;
+                }
             }
+        } else{
+            press = Input.GetMouseButton(0);
+            mx = Input.GetAxis("Mouse X");
+            my = Input.GetAxis("Mouse Y");
         }
-#else 
-        bool press = Input.GetMouseButton(0);
-        float mx = Input.GetAxis("Mouse X");
-        float my = Input.GetAxis("Mouse Y");
-#endif
         GameCamera.Inst.Control(press, mx, my);
     }
 
